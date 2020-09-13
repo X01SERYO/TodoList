@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             Log.v("Consola", "task null")
         }
 
-        listaDeActividades.setOnItemClickListener { parent, view, position, id ->
+        listaDeActividades.setOnItemLongClickListener {parent, view, position, id ->
             Toast.makeText(
                 this,
                 "Se borró la actividad  ${listaDeActividades.getItemAtPosition(position)}",
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         listaDeActividades.adapter = adapter
     }
 
-    private fun validateExistence() {
+    private fun validateExistence():Boolean {
         var file: File = File("/data/data/com.example.todolist/files/activity_list.txt")
         if (file.exists()) {
             Log.v("Consola", "Exists $file")
@@ -99,5 +99,6 @@ class MainActivity : AppCompatActivity() {
             readFile()
             out.close()
         }
+        return true
     }
 }
